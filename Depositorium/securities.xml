@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<securities>
+<security>
+<auk_proc>STR</auk_proc>
+<cpcode>STR</cpcode>
+<cpcode_cfi>STR</cpcode_cfi>
+<cpdescr>STR</cpdescr>
+<cptype>STR</cptype>
+<cptype_nkcpfr>STR</cptype_nkcpfr>
+<emit_name>STR</emit_name>
+<emit_okpo>STR</emit_okpo>
+<nominal>100</nominal>
+<pay_period>100</pay_period>
+<payments>
+<payment>
+<pay_date>Wed May 24 15:49:08 UTC 2023</pay_date>
+<pay_type>STR</pay_type>
+<pay_val>STR</pay_val>
+</payment>
+</payments>
+<pgs_date>Wed May 24 15:49:08 UTC 2023</pgs_date>
+<razm_date>Wed May 24 15:49:08 UTC 2023</razm_date>
+<total_bounds>100</total_bounds>
+<val_code>STR</val_code>
+</security>
+</securities>
