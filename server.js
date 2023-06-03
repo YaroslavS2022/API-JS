@@ -90,7 +90,7 @@ async function makePostRequest(url, data, contentType) {
   
     /*TEST*/
   
-  // GET endpoint
+                                                            // GET endpoint
   
   app.get('/data', (req, res) => {
     console.log(data);
@@ -139,6 +139,7 @@ async function makePostRequest(url, data, contentType) {
   });
   
   
+
   // POST endpoint for JSON data
   app.post('/data/json', (req, res) => {
     const jsonData = req.body;
@@ -147,7 +148,11 @@ async function makePostRequest(url, data, contentType) {
     makePostRequest(url, jsonData, 'application/json');
     res.send('JSON data stored');
   });
-  
+
+
+                                                        // POST
+
+
   // POST endpoint for XML data
   app.post('/data/xml', (req, res) => {
     const xmlData = req.body;
@@ -161,6 +166,77 @@ async function makePostRequest(url, data, contentType) {
         res.send('XML data stored');
       }
     });
+  });
+
+const path = require('path');
+const { Builder } = require('xml2js');
+
+const folderPath = 'Depositorium';
+
+function extractXML(targetValue) {
+  fs.readdir(folderPath, (err, files) => {
+    if (err) {
+      console.error('Error reading folder:', err);
+      return;
+    }
+
+    // Iterate through each file
+    files.forEach((file) => {
+      const filePath = `${folderPath}/${file}`;
+      const fileName = path.basename(filePath);
+      const depo = fileName.substring(0, 9);
+
+      if (depo === 'depoagree') {
+        fs.readFile(filePath, 'utf8', (err, xmlData) => {
+          if (err) {
+            console.error('Error reading file:', err);
+            return;
+          }
+
+          xml2js.parseString(xmlData, (err, result) => {
+            if (err) {
+              console.error('Error parsing XML:', err);
+              return;
+            }
+
+            const deponentId = result.depoagrees.depoagree[0].deponent_id[0];
+            if (deponentId === targetValue) {
+              console.log('Matching file:', filePath);
+              console.log('XML content:', result);
+              
+              // Convert the JavaScript object back to XML
+              const builder = new Builder({ xmldec: { version: '1.0', encoding: 'UTF-8' } });
+              const xml = builder.buildObject(result);
+              console.log('Generated XML:', xml);
+              return xml;
+            }
+          });
+        });
+      } else {
+        console.log('other');
+      }
+    });
+  });
+}
+  app.post('/data/XMLEntrySSL/do/depoapi/get/depoagrees/:parameter', (req, res) => {
+    const parameter = req.params.parameter;
+    console.log(extractXML(parameter));
+    res.send('ok');
+    //const path = "./Depositorium/" + parameter;
+    // console.log("");
+    // const fs = require("fs")
+    // try {
+    //   //const arrayOfFiles = fs.readdirSync("./Depositorium")
+    //   const name = "Depositorium/" + parameter + ".xml";
+    //   res.send(extractDataFromXML(name));
+    //   //console.log(arrayOfFiles)
+    //   console.log(extractDataFromXML(name));
+    // } catch(e) {
+    //   console.log(e)
+    // }
+    // console.log("/n/n");
+    
+    // console.log(data);
   });
   
   // Create an HTTP server

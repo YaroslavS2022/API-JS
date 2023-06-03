@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<depoagrees>
+<depoagree>
+<accnt_type>accnt_type1</accnt_type>
+<account>account1</account>
+<address>Saddress1TR</address>
+<agree_date>Sat Jun 03 11:54:37 UTC 2023</agree_date>
+<agree_no>agree_no1</agree_no>
+<close_date>Sat Jun 03 11:54:37 UTC 2023</close_date>
+<cltype_nk>100</cltype_nk>
+<country_id>123</country_id>
+<deponent_id>55</deponent_id>
+<deponent_type>deponent_type</deponent_type>
+<full_name>full_name</full_name>
+<note>note</note>
+<open_date>Sat Jun 03 11:54:37 UTC 2023</open_date>
+<short_name>short_name</short_name>
+<status>status</status>
+</depoagree>
+<elsign>elsign</elsign>
+<signer>signer</signer>
+<timestamp>Sat Jun 03 11:54:37 UTC 2023</timestamp>
+</depoagrees>
